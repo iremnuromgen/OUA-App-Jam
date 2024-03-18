@@ -1,125 +1,363 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Yolcunun Defteri'),
+      home: MainScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
+class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        backgroundColor: Colors.orange,
+        leading: IconButton(
+          icon: Icon(Icons.menu, color: Colors.white),
+          onPressed: () {
+            // Menü açma işlevi eklenebilir
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search, color: Colors.white),
+            onPressed: () {
+              // Arama işlevi eklenebilir
+            },
+          ),
+        ],
+        title: Text(
+          "Yerel Mücevherleri Keşfedin",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      body: SingleChildScrollView(
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              color: Colors.orange,
+              padding: EdgeInsets.all(10),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            SizedBox(height: 20),
+            // 3 adet resim kutucuğu ve altlarına "text" yazısı
+            Column(
+              children: [
+                _buildImageBox(context, "images/57-1-istanbuldaki-gezilecek-yerler.jpg", "İstanbul Şehir Turu ", "İstanbul Şehir Turu", "YAsya ve Avrupa kıtasının buluştuğu İstanbul Boğazı'yla başlıyoruz. Boğaz Köprüsü, Topkapı Sarayı, Sultanahmat Camii, Ayasofya gibi hazineleri ve nicelerini içeren Tarihi yarımada, Eminönü, Haliç, Pierre loti, Eyüp, Balat, Haydarpaşa, Kalamış ile bir görsel şölene dönüşüyor uçuşumuz.","FOTOĞRAF ÇEK VE YÜKLE",),
+                SizedBox(height: 20),
+                _buildImageBox(context, "images/92280_4k-ultra-hd-istanbul-wallpapers-hd-desktop-backgrounds-3840x2160_3840x2160_h.jpg", "İstanbul Manzara Gezisi", "İstanbul Manzara Gezisi ", "Büyük Çamlıca Tepesi. Çamlıca'nın tepeleri şehirde manzara izlemek için en ünlü noktalardan biri","FOTOĞRAF ÇEK VE YÜKLE",),
+                SizedBox(height: 20),
+                _buildImageBox(context, "images/Belgrad-orman-doga.jpg", "İstanbul Doğa Gezisi", "İstanbul Doğa Gezisi ", " Avrupa Yakası’nda Maslak ile Eyüp arasında konumlanan, doğusunda İstanbul Boğazı batısında ise Karadeniz‘in doğal sınırlarına sahip olan Belgrad Ormanı; Bizans ve Osmanlı dönemlerinde İstanbul’a içme suyu sağlayan en önemli kaynaktı. Avrupa ","FOTOĞRAF ÇEK VE YÜKLE",),
+                SizedBox(height: 20),
+                // "Seyahat Anılarımız" başlığı altına resimler ve pusula simgesi
+                SizedBox(height: 20),
+                // "Seyahat Anılarımız" başlığı
+                Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Text(
+                    "Seyahat Anılarımız",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _buildSmallImageBox(context, "images/57-1-istanbuldaki-gezilecek-yerler.jpg", "Şehir Turu"),
+                    _buildSmallImageBox(context, "images/92280_4k-ultra-hd-istanbul-wallpapers-hd-desktop-backgrounds-3840x2160_3840x2160_h.jpg", "Manzara Gezisi"),
+                    _buildSmallImageBox(context, "images/Belgrad-orman-doga.jpg", "Doğa Gezisi"),
+                    GestureDetector(
+                      onTap: () {
+                        // Pusula simgesine tıklandığında yapılacak işlemler
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CompassScreen()),
+                        );
+                      },
+                      child: Icon(Icons.explore, color: Colors.orange, size: 60,),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 40),
+            // En alt kısımdaki semboller
+            GestureDetector(
+              onTap: () {
+                // Sembollere tıklandığında yapılacak işlemler
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SymbolScreen()),
+                );
+              },
+              child: Container(
+                color: Colors.orange,
+                padding: EdgeInsets.symmetric(vertical: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(Icons.map, size: 40, color: Colors.white),
+                    Icon(Icons.person, size: 40, color: Colors.white),
+                    Icon(Icons.confirmation_num, size: 40, color: Colors.white),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  Widget _buildImageBox(BuildContext context, String imagePath, String bottomLeftText, String bottomRightText, String description, String text) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    return GestureDetector(
+      onTap: () {
+        // Resme tıklandığında yapılacak işlemler
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => DetailScreen(imagePath: imagePath, title: bottomLeftText, description: description, text: text)),
+        );
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8), // Sağ ve sol kenarlarda boşluk ekler
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10), // Tüm köşeleri kavisli yapar
+          child: Column(
+            children: [
+              Image.asset(
+                imagePath, // Resim yolu
+                fit: BoxFit.cover, // Resmi kutucuğa sığdırmak için
+                width: screenWidth - 16, // Ekran genişliğine göre ayarlanan genişlik (kenarlardaki padding değeri kadar azaltılır)
+                height: (screenWidth - 16) * 0.5, // Ekran genişliğinin yarısı kadar yükseklik
+              ),
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Text(bottomLeftText),
+                  Text(bottomRightText),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSmallImageBox(BuildContext context, String imagePath, String title) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    return GestureDetector(
+      onTap: () {
+        // Küçük resme tıklandığında yapılacak işlemler
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => DetailScreen(imagePath: imagePath, title: title, description: '', text: '')),
+        );
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8), // Sağ ve sol kenarlarda boşluk ekler
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10), // Tüm köşeleri kavisli yapar
+          child: Image.asset(
+            imagePath, // Resim yolu
+            fit: BoxFit.cover, // Resmi kutucuğa sığdırmak için
+            width: screenWidth * 0.2, // Ekran genişliğinin beşte biri kadar genişlik
+            height: screenWidth * 0.2, // Ekran genişliğinin beşte biri kadar yükseklik
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class DetailScreen extends StatelessWidget {
+  final String imagePath;
+  final String title;
+  final String description;
+  final String text;
+
+  DetailScreen({required this.imagePath, required this.title, required this.description, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.orange, // Geri tuşunun olduğu bölgenin arka plan rengi
+        title: Text(title),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child:Column(
+                mainAxisAlignment: MainAxisAlignment.start, // Resim ve açıklamaları ekranın üstüne hizalar
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10), // Yatayda 20, dikeyde 10 piksel boşluk
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10), // Köşeleri kavisli yapar
+                      child: Image.asset(
+                        imagePath,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          // Fotoğraf çekme ve yükleme işlevi eklenebilir
+                        },
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.orange, // Sembol arka plan rengi turuncu
+                          ),
+                          child: Icon(Icons.camera_alt, color: Colors.white), // Sembol rengi beyaz
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        "Resmi Yükle",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      Text(
+                        "Keşiflerinizi İzlerken, Anılarınızı Yakalayın",
+                        style: TextStyle(color: Colors.black54),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.orange,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        description,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            color: Colors.orange,
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Icon(Icons.map, size: 40, color: Colors.white),
+                Icon(Icons.person, size: 40, color: Colors.white),
+                Icon(Icons.confirmation_num, size: 40, color: Colors.white),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+class CompassScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Pusula Sayfası"),
+      ),
+      body: Center(
+        child: Text("Pusula sayfası"),
+      ),
+    );
+  }
+}
+
+class SymbolScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Sembol Sayfası"),
+      ),
+      body: Column(
+        children: [
+          SizedBox(height: 20),
+          Padding(
+            padding: EdgeInsets.all(16),
+            child: Text(
+              "Seyahat Anılarımız",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            ),
+          ),
+          _buildSmallImageBox(context, "images/57-1-istanbuldaki-gezilecek-yerler.jpg", "Şehir Turu"),
+          _buildSmallImageBox(context, "images/92280_4k-ultra-hd-istanbul-wallpapers-hd-desktop-backgrounds-3840x2160_3840x2160_h.jpg", "Manzara Gezisi"),
+          _buildSmallImageBox(context, "images/Belgrad-orman-doga.jpg", "Doğa Gezisi"),
+          SizedBox(height: 40),
+          // En alt kısımdaki semboller
+          Container(
+            color: Colors.orange,
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Icon(Icons.map, size: 40, color: Colors.white),
+                Icon(Icons.person, size: 40, color: Colors.white),
+                Icon(Icons.confirmation_num, size: 40, color: Colors.white),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSmallImageBox(BuildContext context, String imagePath, String title) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    return GestureDetector(
+      onTap: () {
+        // Küçük resme tıklandığında yapılacak işlemler
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => DetailScreen(imagePath: imagePath, title: title, description: '', text: '')),
+        );
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8), // Sağ ve sol kenarlarda boşluk ekler
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10), // Tüm köşeleri kavisli yapar
+          child: Image.asset(
+            imagePath, // Resim yolu
+            fit: BoxFit.cover, // Resmi kutucuğa sığdırmak için
+            width: screenWidth * 0.2, // Ekran genişliğinin beşte biri kadar genişlik
+            height: screenWidth * 0.2, // Ekran genişliğinin beşte biri kadar yükseklik
+          ),
+        ),
+      ),
     );
   }
 }
