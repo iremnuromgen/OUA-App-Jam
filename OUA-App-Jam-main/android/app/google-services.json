@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "869639295617",
+    "project_id": "yolcunun-defteri-10175",
+    "storage_bucket": "yolcunun-defteri-10175.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869639295617:android:aa737aae8752de0baef380",
+        "android_client_info": {
+          "package_name": "com.example.yolcunun_defteri"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzMxvRwmVyc1ZcuwaD0zhUtJFlHhjyA3A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
